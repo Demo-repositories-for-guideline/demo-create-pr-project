@@ -5,14 +5,15 @@ const { randomBytes } = require('crypto')
 const USERS = []
 const router = express.Router()
 
-router.put('/', (req, res) => {
+router.post('/', (req, res) => {
     const { firstName, lastName} = req.body
+    const nowInIsoString = new Date().toISOString()
     const user = {
         id: randomBytes(8).toString('hex'),
         firstName,
         lastName,
-        createdAt: Date.now(),
-        updatedAt: Date.now()
+        createdAt: nowInIsoString,
+        updatedAt: nowInIsoString
     }
     USERS.push(user)
 
